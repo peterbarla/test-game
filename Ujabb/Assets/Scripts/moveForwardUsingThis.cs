@@ -6,6 +6,8 @@ public class moveForwardUsingThis : MonoBehaviour
 {
     // Start is called before the first frame update
     //private Transform transform;
+    public Rigidbody rb;
+
     void Start()
     {
         
@@ -14,6 +16,7 @@ public class moveForwardUsingThis : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Translate(1 * Time.deltaTime,0,0);
+       // this.t.Translate(0,0, 10 * Time.deltaTime);
+        rb.AddForce(0, 0, 800 * Time.deltaTime);
     }
 }

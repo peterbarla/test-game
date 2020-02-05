@@ -7,6 +7,7 @@ public class moveForwardUsingThis : MonoBehaviour
     // Start is called before the first frame update
     //private Transform transform;
     public Rigidbody rb;
+    public float forwardSpeed;
 
     void Start()
     {
@@ -17,6 +18,6 @@ public class moveForwardUsingThis : MonoBehaviour
     void Update()
     {
        // this.t.Translate(0,0, 10 * Time.deltaTime);
-        rb.AddForce(0, 0, 800 * Time.deltaTime);
+        rb.AddForce(0, 0, forwardSpeed * Time.deltaTime,ForceMode.VelocityChange);
     }
 }

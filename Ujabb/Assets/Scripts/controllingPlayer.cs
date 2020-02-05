@@ -7,13 +7,13 @@ public class controllingPlayer : MonoBehaviour
     // Start is called before the first frame update
     private bool isLeft = false;
     private bool isRight = false;
-    void Start()
-    {
-        
-    }
+    public Rigidbody rb;
+
+    public float sideSpeed;
+    private bool isEnd = false;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         isLeft = false;
         isRight = false;
@@ -35,13 +35,27 @@ public class controllingPlayer : MonoBehaviour
 
         if (isLeft)
         {
-            this.transform.Translate(-5 * Time.deltaTime,0,0);
+            //this.transform.Translate(-5 * Time.deltaTime,0,0);
+           // Debug.Log("na");
+            rb.AddForce(-sideSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
 
 
         if (isRight)
         {
-            this.transform.Translate(5 * Time.deltaTime, 0, 0);
+           // this.transform.Translate(5 * Time.deltaTime, 0, 0);
+            rb.AddForce(sideSpeed * Time.deltaTime, 0, 0 ,ForceMode.VelocityChange);
         }
+
+        if (this.transform.position.y < 0.5f)
+        {
+            if (!isEnd)
+            {
+                isEnd = true;
+                FindObjectOfType<manageGame>().endGame();
+            }
+        }
+
+
     }
 }

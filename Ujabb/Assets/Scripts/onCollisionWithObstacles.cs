@@ -12,6 +12,7 @@ public class onCollisionWithObstacles : MonoBehaviour
         if(collision.collider.tag == "Obstacle")
         {
             movement.enabled = false;
+            FindObjectOfType<manageGame>().endGame();
         }
     }
 }

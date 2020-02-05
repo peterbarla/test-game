@@ -16,5 +16,6 @@ public class cameraFollowingPlayer : MonoBehaviour
     void Update()
     {
         this.transform.position = transformPlayer.position + distanceVector;
+
     }
 }

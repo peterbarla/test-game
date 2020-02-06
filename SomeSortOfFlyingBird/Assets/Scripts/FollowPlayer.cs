@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Transform playerTransform;
-    private Vector3 offSet = new Vector3(0, 0, -2);
+    public Transform player;
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerTransform.position + offSet;
+        transform.position = player.position + new Vector3(-10f, 0, 0);
     }
 }

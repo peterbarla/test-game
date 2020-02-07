@@ -16,6 +16,13 @@ public class CreatingPillars : MonoBehaviour
 
     private PillarContainer pillarContainer;
 
+    private IncreasingDifficultyAfterACertainTime levelDifficulty;
+
+    void Awake()
+    {
+        pillarContainer = new PillarContainer();
+        levelDifficulty = FindObjectOfType<IncreasingDifficultyAfterACertainTime>();
+    }
     private void Start()
     {
         StartCoroutine(SpawnWalls());
@@ -29,18 +36,30 @@ public class CreatingPillars : MonoBehaviour
         float time = 1f;
         while (true)
         {
-            gap = Random.Range(30f, 45f);
-            mutation = Random.Range(0f, 45f);
+            if(levelDifficulty.difficultyLevel == 0)
+            {
+                gap = Random.Range(50f, 70f);
+                mutation = Random.Range(0f, 15f);
+            }else if (levelDifficulty.difficultyLevel == 1)
+            {
+                gap = Random.Range(40f, 55f);
+                mutation = Random.Range(0f, 35f);
+            }else if (levelDifficulty.difficultyLevel == 2)
+            {
+                gap = Random.Range(30f, 45f);
+                mutation = Random.Range(0f, 55f);
+            }
+            else
+            {
+                gap = Random.Range(25f, 30f);
+                mutation = Random.Range(0f, 60f);
+            }
             isUpperOrLowerMutation = Random.Range(0, 2);
             yield return new WaitForSeconds(time);
             time = 3f;
             createPillarPairsByGaps(100, gap,mutation, isUpperOrLowerMutation, lowerPillarHeight);
         }
 
-    }
-    void Awake()
-    {
-        pillarContainer = new PillarContainer();
     }
 
     private void FixedUpdate()

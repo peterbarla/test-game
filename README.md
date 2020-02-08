@@ -1,2 +1,2 @@
 # test-game
-Testing and learning Unity.
+Testing and learning Unity.Making little games.

@@ -6,13 +6,18 @@ public class JumpAndTriggerAnimation : MonoBehaviour
     private Rigidbody2D rb;
     private float JUMP_AMOUNT = 100f;
     private bool isAndroid = false;
+    private bool isIOS = false;
 
     private void Awake()
     {
         #if UNITY_ANDROID
                 isAndroid = true;
-        #else
+                isIOS = false;
+        #endif
+
+        #if UNITY_IOS
                 isAndroid = false;
+                isIOS = true;
         #endif
         rb = GetComponent<Rigidbody2D>();
     }
@@ -29,9 +34,19 @@ public class JumpAndTriggerAnimation : MonoBehaviour
                 }
             }
         }
+        else if (isIOS)
+        {
+            if (Input.touchCount == 1)
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    animator.Play("WhenPressedSpaceMoveNoseUpAnimation");
+                    Jump();
+                }
+            }
+        }
         else
         {
-
             if (Input.GetButtonDown("Space"))
             {
                 animator.Play("WhenPressedSpaceMoveNoseUpAnimation");
